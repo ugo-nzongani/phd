@@ -23,7 +23,7 @@ def shakeel_shift(n):
     qc = QuantumCircuit(b, s)
     position_qubits = qc.qubits[:n]
     qft = QFT(n, do_swaps=False)
-    qc.x(s[0])
+    #qc.x(s[0]) # uncomment if the walker goes +1 when the coin is |1>
     for i in range(n):
         qc.cx(s[0], b[n-i-1])
     qc.append(qft, position_qubits)
@@ -32,5 +32,5 @@ def shakeel_shift(n):
     qc.append(qft.inverse(), position_qubits)
     for i in range(n):
         qc.cx(s[0], b[i])
-    qc.x(s[0])
+    #qc.x(s[0])
     return qc
