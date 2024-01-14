@@ -45,8 +45,8 @@ def fujiwara_shift(n):
     qc = QuantumCircuit(b, s)
     qubits = [i for i in b] + [s[0]]
     z_up, z_down = shift_gates(n)
+    qc.x(s[0])
     qc.append(z_up, qubits)
     qc.x(s[0])
     qc.append(z_down, qubits)
-    qc.x(s[0])
     return qc
