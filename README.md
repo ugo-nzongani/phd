@@ -1,2 +1,2 @@
 # phd
-Code written during my PhD
+Code written during/for my PhD
