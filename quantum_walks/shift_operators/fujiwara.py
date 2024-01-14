@@ -1,5 +1,7 @@
 from qiskit import *
 
+# We use the convention that the walkers goes -1 if the coin is |1> and +1 if it is |0>
+
 def shift_gates(n):
     """
     Parameters
