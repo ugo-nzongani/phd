@@ -2,6 +2,8 @@ from qiskit import *
 from qiskit.circuit.library import QFT
 from numpy import pi
 
+# We use the convention that the walkers goes -1 if the coin is |1> and +1 if it is |0>
+
 def shakeel_shift(n):
     """
     Parameters
