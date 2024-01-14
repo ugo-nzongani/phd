@@ -5,7 +5,7 @@ from numpy import pi
 # We use the convention that the walker goes -1 if the coin is |1> and +1 if it is |0>
 
 def shakeel_shift(n):
-    """
+    """Shift operator for cycle of size power of two using the QFT
     Parameters
     ----------
     n : int
