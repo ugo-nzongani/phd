@@ -3,15 +3,39 @@ from qiskit import *
 import random
 from qiskit.quantum_info import Statevector
 
-# https://arxiv.org/abs/2306.11747
-
 def fidelity(psi1,psi2,n):
-    F=0+0j
+    """Returns a number between 0 and 1 indicating the similarity between two quantum states
+
+    Parameters
+    ----------
+    psi1 : 1D complex array
+        Quantum state
+    psi2 : 1D complex array
+        Quantum state
+    n : int
+        Number of qubit encoding the position
+
+    Returns
+    -------
+    float
+    """
+    f = 0 + 0j
     for i in range(2**n):
-        F+=np.conj(psi1[i])*psi2[i]
-    return(abs(F)**2)
+        f += np.conj(psi1[i])*psi2[i]
+    return abs(f)**2
     
 def compute_lk(m):
+    """Compute the values of the coefficient l_k 
+
+    Parameters
+    ----------
+    m : int
+        Integer indicating the number of basis states to be generated
+
+    Returns
+    -------
+    1D int array
+    """
     l = []
     n = int(np.ceil(np.log2(m)))
     binary_m = bin(m)[2:].zfill(n)[::-1]
@@ -23,25 +47,60 @@ def compute_lk(m):
     return l
 
 def compute_M(i,l):
+    """Compute the values of the coefficient M_i of Eq. (2.1) of https://arxiv.org/abs/2306.11747
+
+    Parameters
+    ----------
+    i : int
+        Index of the list l
+    l : 1D int array
+        Output of function compute_lk
+
+    Returns
+    -------
+    int
+    """
     if i == 0:
         return 2**l[i]
     else:
         return compute_M(i-1,l) + 2**l[i]
     
 def list_M(l):
+    """Compute the list of the coefficients of Eq. (2.1) of https://arxiv.org/abs/2306.11747
+
+    Parameters
+    ----------
+    l : 1D int array
+        Output of function compute_lk
+
+    Returns
+    -------
+    1D int array
+    """
     res = []
     for i in range(len(l)-1):
         res.append(compute_M(i,l))
     return res
 
 def uniform(m):
+    """Quantum circuit implementing Shukla-Vedula's algorithm: https://arxiv.org/abs/2306.11747
+
+    Parameters
+    ----------
+    m : int
+        Integer indicating the number of basis states to be generated
+
+    Returns
+    -------
+    qiskit.circuit.quantumcircuit.QuantumCircuit
+    """
     if m == 1:
         print('m must be greater than 1')
     else:
         n = int(np.ceil(np.log2(m))) # number of qubits
         q = QuantumRegister(n,name='q')
         qc = QuantumCircuit(q)
-        # true if m is a power of two
+        # if m is a power of two
         if (m & (m-1) == 0) and m != 0:
             qc.h(q)
         else:
