@@ -3,7 +3,7 @@ from qiskit import *
 # We use the convention that the walkers goes -1 if the coin is |1> and +1 if it is |0>
 
 def shift_gates(n):
-    """
+    """Quantum gates of Z+ and Z- used to move the walker
     Parameters
     ----------
     n : int
@@ -12,7 +12,6 @@ def shift_gates(n):
     Returns
     -------
     qiskit.circuit.gate.Gate,qiskit.circuit.gate.Gate
-        Quantum gates Z+ and Z- used to move the walker
     """
     # Position register
     b = QuantumRegister(n, name="b")
@@ -27,7 +26,7 @@ def shift_gates(n):
     return z_up, z_down
 
 def fujiwara_shift(n):
-    """
+    """Quantum circuit implementing the shift operator introduced by Fujiwara et al. (10.1103/PhysRevA.72.032329)
     Parameters
     ----------
     n : int
@@ -35,8 +34,7 @@ def fujiwara_shift(n):
 
     Returns
     -------
-    qiskit.circuit.quantumcircuit.QuantumCircuit
-        Quantum circuit implementing the shift operator introduced by Fujiwara et al. (10.1103/PhysRevA.72.032329)
+    qiskit.circuit.quantumcircuit.QuantumCircuit  
     """
     # Position register
     b = QuantumRegister(n, name="b")
