@@ -5,7 +5,7 @@ from numpy import pi
 # We use the convention that the walker goes -1 if the coin is |1> and +1 if it is |0>
 
 def shakeel_shift(n):
-    """Shift operator for cycle of size power of two using the QFT
+    """Shift operator for cycle of size power of two using the QFT: https://arxiv.org/abs/1912.00978
     Parameters
     ----------
     n : int
@@ -14,7 +14,6 @@ def shakeel_shift(n):
     Returns
     -------
     qiskit.circuit.quantumcircuit.QuantumCircuit
-        Quantum circuit implementing the shift operator using the QFT introduced by Asif Shakeel (10.1007/s11128-020-02834-y)
     """
     # Position register
     b = QuantumRegister(n, name="b")
