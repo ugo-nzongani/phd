@@ -19,7 +19,7 @@ def shift_gates(n):
     qc = QuantumCircuit(b, s)
     for i in range(n):
         ctrl = [s[0]] + b[:n-i-1]
-        qc.mct(ctrl, [b[n-i-1]])
+        qc.mcx(ctrl, [b[n-i-1]])
     z_up = qc.to_gate(label="Z+")
     z_down = qc.inverse().to_gate(label="Z-")
     return z_up, z_down
