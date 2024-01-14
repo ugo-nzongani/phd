@@ -1,5 +1,4 @@
 from qiskit import *
-from numpy import pi
 
 def shift_gates(n):
     """
@@ -45,11 +44,7 @@ def fujiwara_shift(n):
     qubits = [i for i in b] + [s[0]]
     z_up, z_down = shift_gates(n)
     qc.append(z_up, qubits)
-    #qc.barrier()
     qc.x(s[0])
-    #qc.barrier()
     qc.append(z_down, qubits)
-    #qc.barrier()
     qc.x(s[0])
-    #qc.barrier()
     return qc
