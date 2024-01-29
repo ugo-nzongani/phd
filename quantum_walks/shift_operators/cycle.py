@@ -48,7 +48,7 @@ def preincrement(n,first_method=True):
     if first_method:
         qc.mcx([c[0]],q[n-1])
         for i in range(n-1):
-            qc.cx(control,q[n-i-2])
+            qc.cx(c[0],q[n-i-2])
     else:
         for i in range(n-1):
             qc.cx(q[i+1],q[i])
